@@ -1,8 +1,22 @@
 .main {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 2rem;
     align-items: center;
     padding: 6rem;
     min-height: 100vh;
+}
+
+.actionContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+}
+
+.actionButton {
+    font-size: 3rem;
+    cursor: pointer;
+    padding: 1rem;
 }
