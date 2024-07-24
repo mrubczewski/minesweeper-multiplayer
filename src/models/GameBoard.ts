@@ -5,12 +5,23 @@ import { Position } from '@/models/Position'
 
 export class GameBoard {
     tiles: GameTile[][] = []
+    numberOfMines: number
+    numberOfTiles: number
 
     sizeX() {
         return this.tiles[0]?.length || 0
     }
     sizeY() {
         return this.tiles.length
+    }
+
+    constructor(sizeX: number, sizeY: number, numberOfMines: number) {
+        this.numberOfMines = numberOfMines
+        this.numberOfTiles = sizeX * sizeY
+
+        this.generateBoard(sizeX, sizeY)
+        this.placeMines(numberOfMines)
+        this.calculateAdjacentMines()
     }
 
     private generateBoard(sizeX: number, sizeY: number) {
@@ -91,11 +102,5 @@ export class GameBoard {
             boardLog += logRow + '\n'
         }
         console.log(boardLog)
-    }
-
-    constructor(sizeX: number, sizeY: number, numberOfMines: number) {
-        this.generateBoard(sizeX, sizeY)
-        this.placeMines(numberOfMines)
-        this.calculateAdjacentMines()
     }
 }

@@ -1,24 +1,38 @@
 import React, { ReactNode } from 'react'
 import GameTile from '@/components/Gametile/GameTile'
 import styles from './GameBoard.module.css'
+import { TileState } from '@/models/TileState'
 
 interface Props {
-    sizeX: number
-    sizeY: number
+    tilesState: TileState[][]
+    revealTile: (posX: number, posY: number) => void
 }
 
-export default function GameBoardView({ sizeX, sizeY }: Props): ReactNode {
+export default function GameBoardView({
+    tilesState,
+    revealTile,
+}: Props): ReactNode {
+    console.log(tilesState)
+
     const boardSizeStyle = {
-        '--rows': sizeY,
-        '--columns': sizeX,
+        '--rows': tilesState.length,
+        '--columns': tilesState[0].length,
     }
 
     const board: ReactNode[][] = []
 
-    for (let y = 0; y < sizeY; y++) {
+    for (let y = 0; y < tilesState.length; y++) {
         const boardRow: ReactNode[] = []
-        for (let x = 0; x < sizeX; x++) {
-            boardRow.push(<GameTile key={`${x}${y}`}></GameTile>)
+        for (let x = 0; x < tilesState[0].length; x++) {
+            boardRow.push(
+                <GameTile
+                    key={`${x}${y}`}
+                    state={tilesState[y][x]}
+                    onClick={() => {
+                        revealTile(x, y)
+                    }}
+                ></GameTile>
+            )
         }
         board.push(boardRow)
     }
