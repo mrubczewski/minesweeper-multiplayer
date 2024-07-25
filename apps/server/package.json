@@ -2,6 +2,7 @@
   "name": "minesweeper-server",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "dev-nowatch": "node --loader ts-node/esm src/index.ts",
@@ -17,5 +18,9 @@
     "nodemon": "^3.1.4",
     "ts-node": "^10.9.2",
     "typescript": "^5"
+  },
+  "dependencies": {
+    "@types/ws": "^8.5.11",
+    "ws": "^8.18.0"
   }
 }
