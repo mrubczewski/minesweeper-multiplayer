@@ -1,0 +1,9 @@
+.tileContainer {
+    display: flex;
+}
+
+.tile {
+    height: 4rem;
+    width: 4rem;
+    background-color: darkcyan;
+}
